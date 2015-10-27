@@ -1,66 +1,18 @@
 /*---------------------------------------------
-  FONT AWESOME 
-  -------------------------------------------*/
-
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.woff?v=3.2.1') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"],
-[class*=" icon-"] {
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-  *margin-right: .3em;
-}
-
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
-  text-decoration: none;
-  display: inline-block;
-  speak: none;
-}
-
-.icon-github:before, .icon-linkedin:before, .icon-instagram:before {
-  font-size: 1.5em;
-}
-
-.icon-github:before {
-  content: "\f092";
-}
-
-.icon-linkedin:before {
-  content: "\f0e1";
-}
-
-.icon-instagram:before {
-  content: "\f16d";
-}
-
-
-
-/*---------------------------------------------
   MAIN CONTENT 
   -------------------------------------------*/
 
 body {
-  background-image: url('../static/back0.jpg');
+  background-image: url('../img/background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   color: white;
-  -webkit-transition: background-image 0.8s ease 0.1s;
-  transition: background-image 0.8s ease 0.1s;
   overflow-x:hidden;
   overflow-y:scroll;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
 }
 
 @media (min-width: 1250px) {
@@ -173,23 +125,9 @@ body {
   }
 }
 
-@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-
-.fade-in{
-  opacity:0;  /* make things invisible upon start */
- -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
- -moz-animation:fadeIn ease-in 1;
- animation:fadeIn ease-in 1;
- 
- -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
- -moz-animation-fill-mode:forwards;
- animation-fill-mode:forwards;
- 
- -webkit-animation-duration:0.2s;
- -moz-animation-duration:0.2s;
- animation-duration:0.2s;
+.profile-picture {
+  display: block;
+  margin: 0 auto;
 }
 
 .main-content {
@@ -222,34 +160,34 @@ body {
   border-top: 1px solid rgba(255,255,255,0.6);
 }
 
-.separator-top, .separator {
+.separator-top,
+.separator {
   padding: 20px 0px;
   height: 270px;
 }
 
-.separator-top div a, .separator div a {
+.separator-top div a,
+.separator div a {
   color: white;
   font-weight: bold;
   font-size:18px;
 }
 
-.separator-top div a i, .separator div a i {
+.separator-top div a i,
+.separator div a i {
   margin-left: 10px;
 }
 
-.separator-top div p , .separator div p {
+.separator-top div p,
+.separator div p {
   margin-top: 8px;
 }
 
-.separator-top a, .separator-top a img,  
-.separator a, .separator a img {
+.separator-top a,
+.separator-top a img,  
+.separator a,
+.separator a img {
   height:100%;
-}
-
-input, textarea, button {
-  border-radius: 0 !important;
-  border: 0 !important;
-  box-shadow: 0  !important;
 }
 
 #social a {
@@ -294,31 +232,6 @@ input, textarea, button {
   margin-bottom: 5px;
 }
 
-.photography-album a {
-  color: #5bc0de;
-}
-
-.photography-album #grey-arrow {
-  color: #999;
-}
-
-.photography-album img {
-  height: auto;
-  width: 100%;
-}
-
-.photography-album div a {
-  margin-bottom: 30px;
-}
-
-#photography-album-jump {
-  text-align: center;
-}
-
-#photography-album-jump a:hover {
-  cursor: pointer;
-}
-
 #photography {
   height:230px;
   overflow: hidden;
@@ -330,37 +243,52 @@ input, textarea, button {
     color: #9E9999;
 }
 
-.form-control:focus {
-  box-shadow: inset 0 1px 5px rgba(0,0,0,.075),0 0 25px rgba(103,175,233,.9) !important;
-}
- 
 .main-content::-webkit-scrollbar {
   width: 12px;
 }
 
-img.fader {
-  border-radius: 5px 5px 5px 5px ;
-  display: none;
-  height: 400px;
-  left: 0px;
-  position: absolute;
-  top: 0px;
-  width: 400px;
-  z-index: 2;
+/*---------------------------------------------
+  FONT AWESOME 
+  -------------------------------------------*/
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../fonts/fontawesome-webfont.woff?v=3.2.1') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-img.fader.show {
-  display: block;
-  transition: opacity 250ms ease;
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em;
 }
 
-img.fader.fadeOut {
-  opacity: 0;
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  text-decoration: none;
+  display: inline-block;
+  speak: none;
 }
 
-img.image {
-  border-radius: 5px 5px 5px 5px;
-  display: block;
-  height: 400px;
-  width: 400px;
+.icon-github:before, .icon-linkedin:before, .icon-instagram:before {
+  font-size: 1.5em;
 }
+
+.icon-github:before {
+  content: "\f092";
+}
+
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+
+.icon-instagram:before {
+  content: "\f16d";
+}
+
+
