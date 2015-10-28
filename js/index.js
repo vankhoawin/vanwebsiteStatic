@@ -62,7 +62,7 @@ $(document).ready(function () {
         '<div class="separator">' +
         '  <div class="section-picture">' +
         '    <a ' + flickrLink + 'target="_blank">' +
-        '      <img src="' + album.thumbnail + '" data-alt="" />' +
+        '      <img src="' + album.thumbnail + '" />' +
         '    </a>' +
         '  </div>' + 
         '  <div class="section-description">' +
