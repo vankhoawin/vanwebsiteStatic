@@ -13,53 +13,31 @@
 
   <title>Van Nguyen</title>
 
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/loading.css">
 </head>
 
 <body>
-  <div id="top" class="container">
-    <div class="row-fluid">
-      <div class="col-sm-4 col-md-3">
-        <div class="sidebar-nav">
-          <div class="navbar navbar-default" role="navigation">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <span class="visible-xs navbar-brand"><a href="index.html">Van Nguyen</a></span>
-            </div>
-            <div class="navbar-collapse collapse side-nav sidebar-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="hidden-xs"><a href="index.html">Van Nguyen</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li class="active"><a href="photography.html">Photography</a></li>
-                <li><a href="contact.html">Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-sm-8 col-md-9 main-content fade-in" id="transparency">
+  <div class="container">
+    <nav>
+      <ul>
+        <li><a href="index.html">Van Nguyen</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li class="active"><a href="photography.html">Photography</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
       <h4 class="photography-album">Photo albums are loaded via Flickr API. Visit my <a target="_blank" href="https://www.flickr.com/photos/126052905@N03/">Flickr</a>!</h4>
 
-      <div id="photo-container" class="wrapperloading">
+      <div id="photo-container" class="loading-wrapper">
         <div class="loading down"></div>
       </div>
     </div>
-
   </div>
-</body>
 
-  <!-- JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/index.js"></script>
-
+</body>
 </html>
