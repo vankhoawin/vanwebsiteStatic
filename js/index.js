@@ -60,12 +60,12 @@ $(document).ready(function () {
 
       photoHTML += (
         '<div class="' + (index === 0 ? 'separator-top' : 'separator') + '">' +
-        '  <div class="col-xs-12 col-md-6 col-lg-5" id="photography">' +
+        '  <div id="photography">' +
         '    <a ' + flickrLink + 'target="_blank">' +
         '      <img src="' + album.thumbnail + '" data-alt="" />' +
         '    </a>' +
         '  </div>' + 
-        '  <div class="col-xs-12 col-md-6 col-lg-7">' +
+        '  <div>' +
         '    <a ' + flickrLink + 'target="_blank">' + album.title + '</a>' +
         '    <i>' + album.size + ' ' + (album.size > 1 ? 'photos' : 'photo') + '</i>' +
         '    <p>' + album.description + '</p>' +
