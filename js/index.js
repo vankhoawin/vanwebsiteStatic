@@ -55,17 +55,17 @@ $(document).ready(function () {
       , flickrLink     = ''
       ;
 
-    albums.forEach(function (album, index) {
+    albums.forEach(function (album) {
       flickrLink = 'href="https://www.flickr.com/photos/' + USER_ID + '/albums/' + album.id + '"';
 
       photoHTML += (
-        '<div class="' + (index === 0 ? 'separator-top' : 'separator') + '">' +
-        '  <div id="photography">' +
+        '<div class="separator">' +
+        '  <div class="section-picture">' +
         '    <a ' + flickrLink + 'target="_blank">' +
         '      <img src="' + album.thumbnail + '" data-alt="" />' +
         '    </a>' +
         '  </div>' + 
-        '  <div>' +
+        '  <div class="section-description">' +
         '    <a ' + flickrLink + 'target="_blank">' + album.title + '</a>' +
         '    <i>' + album.size + ' ' + (album.size > 1 ? 'photos' : 'photo') + '</i>' +
         '    <p>' + album.description + '</p>' +
