@@ -34,6 +34,7 @@ nav {
 nav ul {
   list-style-type: none;
   margin: 0;
+  padding: 0;
 }
 
 nav a {
@@ -194,6 +195,11 @@ nav a:hover {
   font-weight: normal;
   margin-bottom: 0;
   margin-top: 15px;
+}
+
+.work-history h4 span {
+  color: white;
+  font-style: italic;
 }
 
 .work-history h5 {
