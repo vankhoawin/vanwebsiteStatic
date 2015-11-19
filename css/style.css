@@ -92,6 +92,10 @@ nav a:hover {
   .photography-album {
     text-align: center;
   }
+
+  .album-container .album-picture {
+    text-align: center;
+  }
 }
 
 @media (min-width: 950px) {
@@ -140,6 +144,10 @@ nav a:hover {
     width: 60%;
     margin-right: 5px;
     float: right;
+  }
+
+  .album-container .album-picture {
+    text-align: center;
   }
 }
 
@@ -224,6 +232,14 @@ nav a:hover {
 
 .section-picture img {
   height: auto;
+}
+
+.album-picture {
+  margin: 30px 80px;
+}
+
+.album-picture img {
+  width: 100%;
 }
 
 .section-description a {

@@ -7,6 +7,7 @@
 
 $(document).ready(function () {
   var SIZE_NUM = 4                                  // size of photo to use for thumbnail
+    , QUALITY  = 8                                  // quality of album photos to use for thumbnail
     , USER_ID  = '126052905@N03'                    // Van's Flickr ID
     , API_KEY  = 'aa97f39fc7ff944178ebd92711b9ab35' // dummy Flickr account API key
     , albumList = {}
@@ -87,18 +88,20 @@ $(document).ready(function () {
   }
 
   function loadSingleAlbum(e) {
+    var albumId = $(this).attr('data-photo-id');
+
     $.ajax({
       method: 'GET',
       url: 'https://api.flickr.com/services/rest',
       data: {
         method: 'flickr.photosets.getPhotos',
-        photoset_id: $(this).attr('data-photo-id'),
+        photoset_id: albumId,
         api_key: API_KEY,
         format: 'json',
         nojsoncallback: 1
       }
     }).success(function (data) {
-      async.concatSeries(data.photoset.photo, loadSingleAlbumPhoto, addSingleAlbumPhotosToDOM);
+      async.concatSeries(data.photoset.photo, loadSingleAlbumPhoto, addSingleAlbumPhotosToDOM.bind(this, albumId));
     }).error(function (err) {
       console.error(err);
     });
@@ -116,20 +119,34 @@ $(document).ready(function () {
         nojsoncallback: 1
       }
     }).success(function (data) {
-      // callback(null, {
-      //   id: album.id,
-      //   title: album.title._content,
-      //   size: +album.photos,
-      //   description: album.description._content,
-      //   thumbnail: data.sizes.size[SIZE_NUM].source,
-      // });
+      callback(null, {
+        id: photo.id,
+        thumbnail: data.sizes.size[QUALITY].source,
+      });
     }).error(function (err) {
       console.error(err);
     });
   }
 
-  function addSingleAlbumPhotosToDOM (err, photos) {
+  function addSingleAlbumPhotosToDOM (albumId, err, photos) {
+    var photoContainer = document.getElementById('album-container')
+      , photoHTML      = ''
+      , flickrLink     = ''
+      ;
 
+    photos.forEach(function (photo) {
+      flickrLink = 'href="https://www.flickr.com/photos/' + USER_ID + '/albums/' + albumId + '/' + photo.id + '"';
+
+      photoHTML += (
+        '<div class="album-picture">' +
+        '  <a ' + flickrLink + '">' +
+        '    <img src="' + photo.thumbnail + '" />' +
+        '  </a>' +
+        '</div>' 
+      ); 
+    })
+
+    photoContainer.innerHTML = photoHTML;
   }
 
   loadAlbums();
