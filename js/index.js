@@ -9,6 +9,7 @@ $(document).ready(function () {
   var SIZE_NUM = 4                                  // size of photo to use for thumbnail
     , USER_ID  = '126052905@N03'                    // Van's Flickr ID
     , API_KEY  = 'aa97f39fc7ff944178ebd92711b9ab35' // dummy Flickr account API key
+    , albumList = {}
     ;
 
   function loadAlbums() {
@@ -65,21 +66,70 @@ $(document).ready(function () {
       photoHTML += (
         '<div class="separator">' +
         '  <div class="section-picture">' +
-        '    <a ' + flickrLink + 'target="_blank">' +
+        '    <a data-photo-id' + album.id + '">' +
         '      <img src="' + album.thumbnail + '" />' +
         '    </a>' +
         '  </div>' + 
         '  <div class="section-description">' +
-        '    <a ' + flickrLink + 'target="_blank">' + album.title + '</a>' +
+        '    <a data-photo-id="' + album.id + '">' + album.title + '</a>' +
         '    <i>' + album.size + ' ' + (album.size > 1 ? 'photos' : 'photo') + '</i>' +
         '    <p>' + album.description + '</p>' +
         '  </div>' + 
         '</div>'
       );
+
+      albumList[album.id] = album;
     });
 
     photoContainer.className = '';
     photoContainer.innerHTML = photoHTML;
+    $('.separator a').click(loadSingleAlbum);
+  }
+
+  function loadSingleAlbum(e) {
+    $.ajax({
+      method: 'GET',
+      url: 'https://api.flickr.com/services/rest',
+      data: {
+        method: 'flickr.photosets.getPhotos',
+        photoset_id: $(this).attr('data-photo-id'),
+        api_key: API_KEY,
+        format: 'json',
+        nojsoncallback: 1
+      }
+    }).success(function (data) {
+      async.concatSeries(data.photoset.photo, loadSingleAlbumPhoto, addSingleAlbumPhotosToDOM);
+    }).error(function (err) {
+      console.error(err);
+    });
+  }
+
+  function loadSingleAlbumPhoto(photo, callback) {
+    $.ajax({
+      method: 'GET',
+      url: 'https://api.flickr.com/services/rest',
+      data: {
+        method: 'flickr.photos.getSizes',
+        photo_id: photo.id,
+        api_key: API_KEY,
+        format: 'json',
+        nojsoncallback: 1
+      }
+    }).success(function (data) {
+      // callback(null, {
+      //   id: album.id,
+      //   title: album.title._content,
+      //   size: +album.photos,
+      //   description: album.description._content,
+      //   thumbnail: data.sizes.size[SIZE_NUM].source,
+      // });
+    }).error(function (err) {
+      console.error(err);
+    });
+  }
+
+  function addSingleAlbumPhotosToDOM (err, photos) {
+
   }
 
   loadAlbums();
