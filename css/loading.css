@@ -2,8 +2,54 @@ body {
   background-image: url('../img/backgroundblur.jpg');
 }
 
+@media (max-width: 949px) {
+  #album-caption {
+    text-align: center;
+  }
+}
+
 .loading-wrapper {
-  height: 200px;
+  height: 600px;
+}
+
+#album-caption {
+  margin-top: 50px;
+}
+
+#album-caption * {
+  display: inline-block;
+  font-size: 18px;
+}
+
+#album-caption a,
+.album-anchor a,
+.photography-album a {
+  color: #5bc0de;
+  text-decoration: none;
+}
+
+#album-caption a,
+#album-caption h3 {
+  font-weight: bold;
+}
+
+#album-caption a:hover,
+.album-anchor a:hover,
+.photography-album a:hover {
+  text-decoration: underline;
+}
+
+#album-caption p {
+  font-size: 16px;
+  display: block;
+}
+
+#album-caption span {
+  color: #999;
+}
+
+.album-anchor {
+  text-align: center;
 }
 
 .loading-wrapper .loading.down {
