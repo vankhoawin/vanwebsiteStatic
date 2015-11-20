@@ -16,7 +16,7 @@ $(document).ready(function () {
     , $albumContainer = $('#album-container')
     ;
 
-  function loadAlbums() {
+  function loadAlbumList() {
     $.ajax({
       method: 'GET',
       url: 'https://api.flickr.com/services/rest',
@@ -24,17 +24,17 @@ $(document).ready(function () {
         method: 'flickr.photosets.getList',
         user_id: USER_ID,
         api_key: API_KEY,
-        format: "json",
+        format: 'json',
         nojsoncallback: 1
       }
     }).success(function (data) {
-      async.concatSeries(data.photosets.photoset, processAlbum, addPhotosToDOM);
+      async.concatSeries(data.photosets.photoset, processAlbumInList, addAlbumListToDOM);
     }).error(function (err) {
       console.error(err);
     });
   }
 
-  function processAlbum(album, callback) {
+  function processAlbumInList(album, callback) {
     $.ajax({
       method: 'GET',
       url: 'https://api.flickr.com/services/rest',
@@ -58,7 +58,7 @@ $(document).ready(function () {
     });
   }
 
-  function addPhotosToDOM(err, albums) {
+  function addAlbumListToDOM(err, albums) {
     var photoHTML = ''
       , album
       ;
@@ -88,10 +88,10 @@ $(document).ready(function () {
       .removeClass('loading-wrapper')
       .html(photoHTML)
       .find('.separator a')
-      .click(getSingleAlbum);
+      .click(clickAlbumHandler);
   }
 
-  function getSingleAlbum(e) {
+  function clickAlbumHandler(e) {
     var albumId    = $(this).attr('data-album-id')
       , album      = albumList[albumId]
       , $photoData
@@ -108,10 +108,12 @@ $(document).ready(function () {
       '<div id="album-pictures" class="loading down"></div>'
     );
 
-    $photoData.find('#navigate-photo-home').click(function () {
-      $photoContainer.show();
-      $albumContainer.hide();
-    });
+    $photoData
+      .find('#navigate-photo-home')
+      .click(function () {
+        $photoContainer.show();
+        $albumContainer.hide();
+      });
 
     $photoContainer.hide();
     $albumContainer
@@ -119,10 +121,10 @@ $(document).ready(function () {
       .html($photoData)
       .show();
 
-    loadSingleAlbum(albumId);
+    loadAlbum(albumId);
   }
 
-  function loadSingleAlbum(albumId) {
+  function loadAlbum(albumId) {
     $.ajax({
       method: 'GET',
       url: 'https://api.flickr.com/services/rest',
@@ -134,13 +136,13 @@ $(document).ready(function () {
         nojsoncallback: 1
       }
     }).success(function (data) {
-      async.concatSeries(data.photoset.photo, loadSingleAlbumPhoto, addSingleAlbumPhotosToDOM);
+      async.concatSeries(data.photoset.photo, processPhotoInAlbum, addAlbumToDOM);
     }).error(function (err) {
       console.error(err);
     });
   }
 
-  function loadSingleAlbumPhoto(photo, callback) {
+  function processPhotoInAlbum(photo, callback) {
     $.ajax({
       method: 'GET',
       url: 'https://api.flickr.com/services/rest',
@@ -161,7 +163,7 @@ $(document).ready(function () {
     });
   }
 
-  function addSingleAlbumPhotosToDOM (err, photos) {
+  function addAlbumToDOM(err, photos) {
     var $albumPictures = $('#album-pictures')
       , photoHTML      = ''
       , anchor         = '<div class="album-anchor"><a href="#">Back to Top</a></div>'
@@ -187,6 +189,6 @@ $(document).ready(function () {
     $albumContainer.removeClass('loading-wrapper');
   }
 
-  loadAlbums();
+  loadAlbumList();
 
 });
