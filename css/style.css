@@ -63,6 +63,10 @@ nav a:hover {
   margin-top: 15px;
 }
 
+#content-fade-in {
+  display: none;
+}
+
 @media (max-width: 949px) {
   .main-content {
     padding: 5px;
@@ -207,12 +211,17 @@ nav a:hover {
 }
 
 .profile-picture img {
+  padding-top: 10%;
   height: 300px;
   width: auto;
 }
 
 .resume-skills {
   margin-bottom: 30px;
+}
+
+.work-history > div {
+  margin-bottom: 25px;
 }
 
 .work-history h4 {
