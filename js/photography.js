@@ -61,9 +61,10 @@ $(document).ready(function () {
   function addAlbumListToDOM(err, albums) {
     var photoHTML = ''
       , album
+      , i
       ;
 
-    for (var i = 0; i < albums.length; ++i) {
+    for (i = 0; i < albums.length; ++i) {
       album = albums[i];
 
       photoHTML += (
@@ -166,14 +167,13 @@ $(document).ready(function () {
   function addAlbumToDOM(err, photos) {
     var $albumPictures = $('#album-pictures')
       , photoHTML      = ''
-      , anchor         = '<div class="album-anchor"><a href="#">Back to Top</a></div>'
       , photo
       , flickrLink
+      , i
       ;
 
-    for (var i = 0; i < photos.length; ++i) {
+    for (i = 0; i < photos.length; ++i) {
       photo = photos[i];
-
       flickrLink = 'href="https://www.flickr.com/photos/' + USER_ID + '/' + photo.id + '"';
 
       photoHTML += (
@@ -185,7 +185,7 @@ $(document).ready(function () {
       );
     };
 
-    $albumPictures.html(photoHTML + anchor);
+    $albumPictures.html(photoHTML);
     $albumContainer.removeClass('loading-wrapper');
   }
 

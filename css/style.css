@@ -67,9 +67,17 @@ nav a:hover {
   display: none;
 }
 
+.final-project h1 {
+  margin-top: 40px;
+}
+
+.final-project h1:first-child {
+  margin-top: 10px;
+}
+
 @media (max-width: 949px) {
   .main-content {
-    padding: 5px;
+    padding: 20px;
   }
 
   .separator {
@@ -180,7 +188,7 @@ nav a:hover {
 
 .main-content {
   position: relative;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(10, 10, 10, 0.95);
   overflow-y: hidden;
   overflow-x: hidden;
 }
